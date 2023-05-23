@@ -1,0 +1,12 @@
+Admin credentials:
+name :Admin
+password :Admin@123
+
+Guest credentials
+name :vinoth
+password :tatanextgen
+
+Mail will be genereted in local 
+path:D:\\Mails
+
+
