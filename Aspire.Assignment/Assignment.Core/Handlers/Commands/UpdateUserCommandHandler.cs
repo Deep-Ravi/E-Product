@@ -36,7 +36,6 @@ namespace Assignment.Core.Handlers.Commands
         public async Task<int> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             CreateUserDTO model = _mapper.Map<CreateUserDTO>(request.Model);
-            int operationId = 0;
             var result = _validator.Validate(model);
 
             if (!result.IsValid)
@@ -64,24 +63,12 @@ namespace Assignment.Core.Handlers.Commands
                 var unMatchedRolesDB = operationsArr.Except(model.Operations);
                 if (unMatchedRolesParam.SequenceEqual(unMatchedRolesDB))
                 {
-                    operationId = operation.Id;
+                    request.Model.OperationId = operation.Id;
                     break;
                 }
             }
 
-            if (operationId == 0)
-            {
-                var operationsInfo = new Operation
-                {
-                    OperationAccess = string.Join(",", model.Operations)
-                };
-                _repository.Operation.Add(operationsInfo);
-                await _repository.CommitAsync();
-                operationId = operationsInfo.Id;
-            }
-
             var entity = _mapper.Map<User>(request.Model);
-            entity.OperationId = operationId;
             entity.Password = _passwordHasher.HashPassword(entity, model.Password);
             _repository.User.Update(entity);
             await _repository.CommitAsync();

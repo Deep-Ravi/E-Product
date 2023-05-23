@@ -9,4 +9,6 @@ password :tatanextgen
 Mail will be genereted in local 
 path:D:\\Mails
 
-
+For Assignmnet.UI project
+Before running
+run npm install cmd for angular

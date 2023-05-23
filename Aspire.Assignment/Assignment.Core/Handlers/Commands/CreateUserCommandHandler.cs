@@ -86,7 +86,7 @@ namespace Assignment.Providers.Handlers.Commands
                 Email=model.Email,
                 RoleId= model.RoleId,
                 OperationId= operationId,
-                LastPasswordChange= DateTime.Now,
+                LastPasswordChange= DateTime.Now.AddMinutes(-5),
             };
 
             if (model.Password == "Guest@945")

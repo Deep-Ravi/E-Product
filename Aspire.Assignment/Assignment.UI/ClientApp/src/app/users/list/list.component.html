@@ -8,7 +8,7 @@
 [pageable]="true" [pageSize]="pageSize" 
 (cancel)="cancelHandler($event)" (add)="addHandler($event)"  (save)="saveHandler($event)" (edit)="editHandler($event)" (remove)="removeHandler($event)">
     <ng-template kendoGridToolbarTemplate>
-        <button kendoGridAddCommand>User Details</button>
+        <button kendoGridAddCommand>Add User Details</button>
         <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button>
     </ng-template>
     <kendo-grid-column field="username" title="Name">
