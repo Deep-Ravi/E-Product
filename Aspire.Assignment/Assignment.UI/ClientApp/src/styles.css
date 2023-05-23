@@ -1,0 +1,98 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.app-container {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+	content: '';
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background-image: url("assets/comics.avif");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+
+.card{
+  width:500px;
+  max-height: 730px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 100px 50px;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.avatar {
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	overflow: hidden;
+	top: calc(-80px/2);
+	left: 210px;
+}
+.card-header {
+	margin: 0;
+	padding: 0 0 20px;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.card a,.p-4 a{
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.container h1,.container .table thead,.container .table tbody{
+  color: #fff;
+}
+
+.p-4 {
+	position: absolute;
+  top: 38%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+}
+
+a:hover {
+  background-color: lightslategray;
+}
+
+.invalid-feedback{
+  font-weight: bolder;
+  font-size: larger;
+  color: aliceblue;
+}
+
+.alertMessage{
+	position: relative;
+  z-index: 1;
+  top: 0%;
+	left: 12%;
+	transform: translate(-10%, 0%);
+}

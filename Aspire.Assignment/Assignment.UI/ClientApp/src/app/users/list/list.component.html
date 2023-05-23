@@ -1,0 +1,66 @@
+<h1>User Details</h1>
+
+<kendo-grid [kendoGridBinding]="users" 
+[height]="400"
+[columnMenu]="{ filter: true }"
+[groupable]="true" 
+[sortable]="true"
+[pageable]="true" [pageSize]="pageSize" 
+(cancel)="cancelHandler($event)" (add)="addHandler($event)"  (save)="saveHandler($event)" (edit)="editHandler($event)" (remove)="removeHandler($event)">
+    <ng-template kendoGridToolbarTemplate>
+        <button kendoGridAddCommand>User Details</button>
+        <button kendoGridPDFCommand icon="file-pdf">Export to PDF</button>
+    </ng-template>
+    <kendo-grid-column field="username" title="Name">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <strong>{{dataItem.username}}</strong>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="email" title="Email"></kendo-grid-column>
+    <kendo-grid-column field="operations" title="Operation Access" [width]="400">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <strong>{{dataItem.operations}}</strong>
+      </ng-template>
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
+        <kendo-multiselect [checkboxes]="true" [data]="operations" [(value)]="formGroup.value.operations" (valueChange)="multiSelectChanges($event)"></kendo-multiselect>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="role" title="Role" [width]="150">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <strong>{{dataItem.rolename}}</strong>
+      </ng-template>
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
+        <kendo-dropdownlist [(value)]="formGroup.value.role" [data]="roles" textField="name" (valueChange)="dropDownChanges($event)"
+        valueField="id"></kendo-dropdownlist>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-command-column title="Operation" [width]="220" [columnMenu]="false"> 
+      <ng-template kendoGridCellTemplate let-isNew="isNew">
+        <button kendoGridEditCommand [primary]="true">Edit</button>
+        <button kendoGridRemoveCommand>Remove</button>
+        <button kendoGridSaveCommand>
+          {{ isNew ? "Add" : "Update" }}
+        </button>
+        <button kendoGridCancelCommand>
+          {{ isNew ? "Discard changes" : "Cancel" }}
+        </button>
+      </ng-template>
+      </kendo-grid-command-column>
+      <ng-template
+        kendoPagerTemplate
+        let-totalPages="totalPages"
+        let-currentPage="currentPage"
+      >
+        <kendo-pager-prev-buttons></kendo-pager-prev-buttons>
+        <kendo-pager-numeric-buttons
+          [buttonCount]="buttonCount"
+        ></kendo-pager-numeric-buttons>
+        <kendo-pager-next-buttons></kendo-pager-next-buttons>
+        <kendo-pager-input></kendo-pager-input>
+        <kendo-pager-info></kendo-pager-info>
+        <kendo-pager-page-sizes [pageSizes]="sizes"></kendo-pager-page-sizes>
+      </ng-template>
+    <kendo-grid-pdf fileName="Users.pdf" [allPages]="true" paperSize="A4" [repeatHeaders]="true" [landscape]="true">
+        <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+    </kendo-grid-pdf>
+</kendo-grid>

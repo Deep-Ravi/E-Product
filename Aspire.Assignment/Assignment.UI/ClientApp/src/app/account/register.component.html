@@ -1,0 +1,45 @@
+﻿<div class="card">
+    <h4 class="card-header">Register</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <img alt="" class="avatar" src="../assets/avatar.png">
+            <div class="form-floating mb-3">
+                <input id="floatingUserName" placeholder="User Name" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': f.username.errors && ( submitted || f.username.touched) }" [readOnly]="!isShow"/>
+                <label for="floatingUserName">User Name</label>
+                <div *ngIf="f.username.errors && ( submitted ||f.username.touched)" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input id="floatingEmail" placeholder="Email ID" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': f.email.errors && ( submitted || f.email.touched) }" [readOnly]="!isShow"/>
+                <label for="floatingEmail">Email ID</label>
+                <div *ngIf="f.email.errors && (submitted ||f.email.touched)" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input id="floatingPassword" placeholder="Password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': f.password.errors && ( submitted ||f.password.touched) }"/>              
+                <label for="floatingPassword">Password</label>
+                <div *ngIf="f.password.errors && ( submitted ||f.password.touched)" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input  id="floatingConfirmPassword" placeholder="Confirm Password" type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': f.confirmPassword.errors && ( submitted ||f.confirmPassword.touched) ||e?.notmatched }" />              
+                <label for="floatingConfirmPassword">Confirm Password</label>
+                <div *ngIf="f.confirmPassword.errors && ( submitted ||f.confirmPassword.touched)" class="invalid-feedback">
+                    <div *ngIf="f.confirmPassword.errors.required">Password is required</div>       
+                </div>
+                <div *ngIf="e?.notmatched" class="invalid-feedback">Password and Confirm password must match</div>
+            </div>
+            <div>
+                <button type="submit" title="registerBtn" [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                    Register
+                </button>
+                <a routerLink="../login" class="btn btn-link" *ngIf="isShow">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

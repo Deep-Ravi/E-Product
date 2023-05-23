@@ -1,0 +1,8 @@
+.p-4 {
+	position: absolute;
+    top: 10%;
+	left: 20%;
+	transform: translate(-10%, 0%);
+	background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+}
