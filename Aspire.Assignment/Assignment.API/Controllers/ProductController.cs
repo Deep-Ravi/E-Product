@@ -58,7 +58,7 @@ namespace Assignment.API.Controllers
         }
 
         [HttpPut]
-        [ProducesResponseType(typeof(System.Guid), (int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(System.Guid), (int)HttpStatusCode.OK)]
         [ProducesErrorResponseType(typeof(BaseResponseDTO))]
         [TypeFilter(typeof(OperationFilters), Arguments = new Object[] {nameof(OperationAccessEnum.EDIT)})]
         public async Task<IActionResult> Put([FromBody] ProductDTO model)
@@ -67,7 +67,7 @@ namespace Assignment.API.Controllers
             {
                 var command = new UpdateProductCommand(model);
                 var response = await _mediator.Send(command);
-                return StatusCode((int)HttpStatusCode.Created, response);
+                return StatusCode((int)HttpStatusCode.OK, response);
             }
             catch (InvalidRequestBodyException ex)
             {
