@@ -1,4 +1,5 @@
-﻿using Assignment.Contracts.Data;
+﻿using Assignment.Contracts;
+using Assignment.Contracts.Data;
 using Assignment.Contracts.Data.Entities;
 using Assignment.Contracts.DTO;
 using Assignment.Core.Exceptions;
@@ -47,8 +48,9 @@ namespace Assignment.Core.Handlers.Commands
                 };
             }
 
-            var record = _repository.User.GetAll().FirstOrDefault(u => u.Email == request.Model.Email&&u.Id!=request.Model.Id);
-            if (record != null)
+            var userRecords = _repository.User.GetAll();
+            var userRecord= userRecords.FirstOrDefault(u => u.Email == request.Model.Email && u.Id != request.Model.Id);
+            if (userRecord != null)
             {
                 throw new InvalidRequestBodyException
                 {
@@ -69,7 +71,12 @@ namespace Assignment.Core.Handlers.Commands
             }
 
             var entity = _mapper.Map<User>(request.Model);
-            entity.Password = _passwordHasher.HashPassword(entity, model.Password);
+            var user= userRecords.FirstOrDefault(u => u.Id == request.Model.Id);
+            PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(user, user.Password, Constants.TemparoryPassword);
+            if (PasswordVerificationResult.Success == passwordResult)
+            {
+                entity.Password = _passwordHasher.HashPassword(entity, model.Password);
+            }
             _repository.User.Update(entity);
             await _repository.CommitAsync();
             return entity.Id;

@@ -10,5 +10,6 @@ namespace Assignment.Contracts
     {
         public const string PassowrdLinkExpired = "Password Link has been Expired";
         public const string PassowrdLinkUsed = "Password Link has been used";
+        public const string TemparoryPassword = "Guest@945";
     }
 }

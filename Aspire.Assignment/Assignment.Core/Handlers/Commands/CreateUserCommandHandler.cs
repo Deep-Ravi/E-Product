@@ -1,3 +1,4 @@
+using Assignment.Contracts;
 using Assignment.Contracts.Data;
 using Assignment.Contracts.Data.Entities;
 using Assignment.Contracts.DTO;
@@ -89,18 +90,15 @@ namespace Assignment.Providers.Handlers.Commands
                 LastPasswordChange= DateTime.Now.AddMinutes(-5),
             };
 
-            if (model.Password == "Guest@945")
+            if (model.Password == Constants.TemparoryPassword)
             {
                 NewUserResetPasswordService.SendPasswordResetMail(entity,_configuration);
-                model.Password = DateTime.Now.Year.ToString() + "@E-ProGuest";
+                model.Password = Constants.TemparoryPassword;
             };
-
             entity.Password= _passwordHasher.HashPassword(entity, model.Password);
             _repository.User.Add(entity);
             await _repository.CommitAsync();
-
             return entity.Id;
         }
-       
     }
 }
