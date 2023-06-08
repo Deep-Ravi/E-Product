@@ -17,8 +17,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.alertService.error("You dont have access!!! Please connect to Administrator", { keepAfterRouteChange: true });               
                 this.router.navigate(['/home']);         
             }
-
-            const error = err.error?.errors?.join(';') || "Error occured";
+            debugger;
+            const error = err.error.split(":")[1].split("at")[0]|| err.error?.errors?.join(';') || "Error occured";
             console.error(err);
             return throwError(() => error);
         }))
