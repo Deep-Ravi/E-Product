@@ -9,6 +9,7 @@ using Assignment.Infrastructure;
 using Assignment.Core;
 using Microsoft.AspNetCore.Mvc;
 using Assignment.Core.Security;
+using Assignment.API.Middleware;
 
 namespace Assignment
 {
@@ -53,10 +54,10 @@ namespace Assignment
             }
             app.UseCors(options => options.WithOrigins("https://localhost:44491/").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
-       //     .AllowAnyHeader()
-       //.AllowAnyMethod()
-       //.AllowAnyOrigin()
-
+            //     .AllowAnyHeader()
+            //.AllowAnyMethod()
+            //.AllowAnyOrigin()
+            app.UseMiddleware(typeof(GlobalErrorHandlingMiddleware));
             app.UseHttpsRedirection();
 
 
