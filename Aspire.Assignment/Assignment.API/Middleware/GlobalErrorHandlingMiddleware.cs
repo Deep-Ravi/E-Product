@@ -50,10 +50,6 @@ namespace Assignment.API.Middleware
             {
                 status = HttpStatusCode.Unauthorized;
             }
-            else if (exceptionType == typeof(Exceptions.KeyNotFoundException))
-            {
-                status = HttpStatusCode.Unauthorized;
-            }
             else
             {
                 status = HttpStatusCode.InternalServerError;

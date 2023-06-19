@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AccountService } from '../_services/account.service';
 import { AlertService } from '../_services/alert.service';
-import { matchPasswordValidator } from '../validator/matchPasswordValidator';
+import { matchPasswordValidator, patternValidator } from '../validator/matchPasswordValidator';
 import { environment } from 'src/environments/environment';
 
 
@@ -36,13 +36,13 @@ export class RegisterComponent implements OnInit {
                     this.form = this.formBuilder.group({
                         username: data.username,
                         email:data.email,
-                        password: ['', [Validators.required, Validators.minLength(6)]],
+                        password: ['', [Validators.required, Validators.minLength(9)]],
                         confirmPassword: ['', [Validators.required]],
                         id: data.id,
                         roleId: data.roleId,
                         operationId: data.operationId
                     },
-                    { validators: matchPasswordValidator });
+                    { validators: [matchPasswordValidator,patternValidator] });
                 },
                 error: (error: any) => {
                     this.alertService.error(error, { keepAfterRouteChange: true });
@@ -54,13 +54,13 @@ export class RegisterComponent implements OnInit {
             this.form = this.formBuilder.group({
                 username: ['', Validators.required],
                 email:['', Validators.required],
-                password: ['', [Validators.required, Validators.minLength(6)]],
+                password: ['', [Validators.required, Validators.minLength(9)]],
                 confirmPassword: ['', [Validators.required]],
                 id:0,
                 roleId: environment.defaultRoleId,
                 operations: [environment.defaultOperations]
             },
-            { validators: matchPasswordValidator });
+            { validators: [matchPasswordValidator,patternValidator] });
         }               
     }
     // convenience getter for easy access to form fields

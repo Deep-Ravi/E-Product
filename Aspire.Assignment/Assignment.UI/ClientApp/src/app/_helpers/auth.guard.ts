@@ -28,6 +28,7 @@ export class AuthGuard implements CanLoad,CanActivate {
             return true;
         }
         window.alert("You dont have access!!! Please connect to Administrator");
+        this.router.navigate(['/account/login']);
         return false;
       }
 }
