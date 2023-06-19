@@ -18,7 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.router.navigate(['/home']);         
             }
             debugger;
-            const error = err.error.split(":")[1].split("at")[0]|| err.error?.errors?.join(';') || "Error occured";
+            const error = err.error?.errors?.join(';') ||err.error.split(":")[1].split("at")[0]||  "Error occured";
             console.error(err);
             return throwError(() => error);
         }))

@@ -27,6 +27,7 @@ namespace Assignment.API.Middleware
             {
                 var status = HandleStatusCode(ex);
                 _logger.LogError($"Something went wrong = Status code :{status}, Exception Message:{ex.Message}, Stack Trace:{ex.StackTrace}");
+                throw new Exception(ex.Message);
             }
         }
         private static int HandleStatusCode(Exception exception)
