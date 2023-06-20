@@ -50,12 +50,21 @@ namespace Assignment.Providers.Handlers.Commands
                 };
             }
 
-            var record = _repository.User.GetAll().FirstOrDefault(u=>u.Email == request.Model.Email);
-            if (record != null)
+            var userRecords = _repository.User.GetAll();
+            var userEmailRecord = userRecords.FirstOrDefault(u => u.Email == request.Model.Email);
+            if (userEmailRecord != null)
             {
                 throw new InvalidRequestBodyException
                 {
                     Errors = new string[] { $"{request.Model.Email} Already Exists" }
+                };
+            }
+            var userNameRecord = userRecords.FirstOrDefault(u => u.Username == request.Model.Username);
+            if (userNameRecord != null)
+            {
+                throw new InvalidRequestBodyException
+                {
+                    Errors = new string[] { $"Username Already Used" }
                 };
             }
 

@@ -50,12 +50,20 @@ namespace Assignment.Core.Handlers.Commands
             }
 
             var userRecords = _repository.User.GetAll();
-            var userRecord= userRecords.FirstOrDefault(u => u.Email == request.Model.Email && u.Id != request.Model.Id);
-            if (userRecord != null)
+            var userEmailRecord= userRecords.FirstOrDefault(u => u.Email == request.Model.Email && u.Id != request.Model.Id);
+            if (userEmailRecord != null)
             {
                 throw new InvalidRequestBodyException
                 {
                     Errors = new string[] { $"{request.Model.Email} Already Exists" }
+                };
+            }
+            var userNameRecord = userRecords.FirstOrDefault(u => u.Username == request.Model.Username && u.Id != request.Model.Id);
+            if (userNameRecord != null)
+            {
+                throw new InvalidRequestBodyException
+                {
+                    Errors = new string[] { $"Username Already Used" }
                 };
             }
 
