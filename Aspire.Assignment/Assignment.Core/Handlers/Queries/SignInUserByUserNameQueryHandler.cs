@@ -46,7 +46,6 @@ namespace Assignment.Providers.Handlers.Queries
         public async Task<string> Handle(SignInUserByUserNameQuery request, CancellationToken cancellationToken)
         {
             var user = await Task.FromResult(_repository.User.GetAll().Where(con=>con.Username.Equals(request.UserName)).FirstOrDefault());
-            var role= await Task.FromResult(_repository.Role.GetAll().Where(con => con.Id.Equals(user.RoleId)).FirstOrDefault());
             if (user == null)
             {
                 throw new EntityNotFoundException($"No User found for  {request.UserName}");
@@ -56,8 +55,8 @@ namespace Assignment.Providers.Handlers.Queries
             {
                 throw new InvalidcredentialsException($"Invalid credentials");
             }
-            
-                var tokenHandler = new JwtSecurityTokenHandler();
+            var role = await Task.FromResult(_repository.Role.GetAll().Where(con => con.Id.Equals(user.RoleId)).FirstOrDefault());
+            var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(_configuration.GetValue<string>("Authentication:Jwt:Secret"));
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {

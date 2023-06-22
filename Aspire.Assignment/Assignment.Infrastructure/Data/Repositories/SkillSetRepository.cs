@@ -24,5 +24,9 @@ namespace Assignment.Infrastructure.Data.Repositories
             return _dbSet.AsQueryable().Where(s => s.IsSendForApproval == true && s.ApprovalStatus == "APPROVAL PENDING")
                 .Include(s=>s.User).Include(s=>s.Category).Include(s=>s.Skill).ToList();
         }
+        public IEnumerable<SkillSet> GetNotifyNewSkillSet()
+        {
+            return _dbSet.AsQueryable().Where(s => s.IsNotified == false && s.ApprovalStatus == "APPROVAL PENDING" && s.IsSendForApproval == true).ToList();
+        }
     }
 }

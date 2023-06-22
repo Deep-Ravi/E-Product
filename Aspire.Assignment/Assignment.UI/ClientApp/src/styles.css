@@ -23,7 +23,7 @@ code {
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
-	background-image: url("assets/comics.avif");
+	/* background-image: url("assets/comics.avif"); */
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -39,7 +39,6 @@ code {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	padding: 100px 50px;
-	background: rgba(0, 0, 0, 0.5);
 }
 
 .avatar {
@@ -54,39 +53,39 @@ code {
 .card-header {
 	margin: 0;
 	padding: 0 0 20px;
-	color: #fff;
+	/* color: #fff; */
 	text-align: center;
 	text-transform: uppercase;
 }
 
 .card a,.p-4 a{
-	color: #fff;
+	/* color: #fff; */
 	font-size: 18px;
 	font-weight: bold;
 	text-decoration: none;
 }
 
-.container h1,.container .table thead,.container .table tbody{
+/* .container h1,.container .table thead,.container .table tbody{
   color: #fff;
-}
+} */
 
-.p-4 {
+/* .p-4 {
 	position: absolute;
   top: 38%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	background: rgba(0, 0, 0, 0.5);
   align-items: center;
-}
+} */
 
-a:hover {
+/* a:hover {
   background-color: lightslategray;
-}
+} */
 
 .invalid-feedback{
   font-weight: bolder;
   font-size: larger;
-  color: aliceblue;
+  /* color: aliceblue; */
 }
 
 .alertMessage{

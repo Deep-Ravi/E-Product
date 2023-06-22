@@ -9,5 +9,6 @@
         public string? Achievement { get; set; }
         public DateTime LastWorkedDate { get; set; }
         public string UserName { get; set; }
+        public bool IsNotified { get; set; }
     }
 }

@@ -64,7 +64,8 @@ export class ListComponent implements OnInit, OnDestroy{
       skill:new FormControl({ name:"Select Skills",id:"0",categoryId:"0" },
         Validators.required),
       lastWorkedDate:new FormControl(new Date(), [Validators.required]),
-      userName:new FormControl(this.user!.userName)
+      userName:new FormControl(this.user!.userName),
+      isNotified:new FormControl(false)
     });
     args.sender.addRow(this.formGroup);
   }

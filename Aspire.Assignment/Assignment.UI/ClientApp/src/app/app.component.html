@@ -1,12 +1,24 @@
 ﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="user">
+<nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="isAdmin()">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <!-- <a class="nav-item nav-link" routerLink="/apps" routerLinkActive="active">Apps</a>
         <a class="nav-item nav-link" routerLink="/products" routerLinkActive="active">Products</a> -->
-        <a class="nav-item nav-link" routerLink="/skillset" routerLinkActive="active">Skills</a>
-        <a class="nav-item nav-link" routerLink="/approval" routerLinkActive="active">Approval</a>
         <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+        <button class="btn btn-link nav-item nav-link" (click)="logout()">Logout</button>
+    </div>
+</nav>
+<nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="isDeveloper()">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a class="nav-item nav-link" routerLink="/skillset" routerLinkActive="active">Skills</a>
+        <button class="btn btn-link nav-item nav-link" (click)="logout()">Logout</button>
+    </div>
+</nav>
+<nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="isManager()">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a class="nav-item nav-link" routerLink="/approval" routerLinkActive="active">Approval</a>
         <button class="btn btn-link nav-item nav-link" (click)="logout()">Logout</button>
     </div>
 </nav>

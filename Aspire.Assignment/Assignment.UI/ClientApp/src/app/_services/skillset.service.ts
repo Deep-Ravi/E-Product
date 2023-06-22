@@ -33,4 +33,8 @@ export class SkillSetService {
     public updateApproval(skillSet: SkillSet): Observable<any> {
         return this.http.put<CreateSkillSet>(`${environment.apiUrl}/api/SkillSet/Approval`, skillSet);
     }
+    public getNotifyNewSkillSet()
+    {
+        return this.http.get<number>(`${environment.apiUrl}/api/SkillSet/Notify`);
+    }
 } 

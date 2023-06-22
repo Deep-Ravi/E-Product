@@ -166,5 +166,18 @@ namespace Assignment.API.Controllers
                 });
             }
         }
+
+        [HttpGet]
+        [Route("Notify")]
+        [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
+        [ProducesErrorResponseType(typeof(BaseResponseDTO))]
+        [Authorize(Roles = "MANAGER")]
+        [TypeFilter(typeof(OperationFilters), Arguments = new Object[] { nameof(OperationAccessEnum.VIEW) })]
+        public async Task<IActionResult> GetNotifyNewSkillSet()
+        {
+            var query = new GetNotifyNewSkillSetCountQuery();
+            var response = await _mediator.Send(query);
+            return Ok(response);
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace Assignment.Contracts.Data.Repositories
     {
         IEnumerable<SkillSet> GetAllDeveloperSkillSet(int userId);
         IEnumerable<SkillSet> GetAllApprovalSkillSet();
+        IEnumerable<SkillSet> GetNotifyNewSkillSet();
     }
 }

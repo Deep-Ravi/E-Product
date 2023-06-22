@@ -13,6 +13,7 @@ export class SkillSet{
     skillName?:string;
     userName?:string;
     email?:string;
+    isNotified?:boolean;
 }
 export class CreateSkillSet{
     id?:string;
