@@ -74,6 +74,7 @@ namespace Assignment.Core.Handlers.Commands
                 var unMatchedRolesDB = operationsArr.Except(model.Operations);
                 if (unMatchedRolesParam.SequenceEqual(unMatchedRolesDB))
                 {
+                    request.Model.OperationId = operation.Id;
                     operationId = operation.Id;
                     break;
                 }

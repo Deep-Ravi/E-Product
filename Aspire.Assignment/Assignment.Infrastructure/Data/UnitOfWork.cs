@@ -1,10 +1,8 @@
 ﻿using Assignment.Contracts.Data;
-using Assignment.Contracts.Data.Entities;
 using Assignment.Contracts.Data.Repositories;
 using Assignment.Core.Data.Repositories;
 using Assignment.Infrastructure.Data.Repositories;
 using Assignment.Migrations;
-using Microsoft.EntityFrameworkCore;
 
 namespace Assignment.Core.Data
 {
@@ -21,13 +19,13 @@ namespace Assignment.Core.Data
         public IProductRepository Product => new ProductRepository(_context);
         public IRoleRepository Role=>new RoleRepository(_context);
         public IOperationRepository Operation=> new OperationRepository(_context);
+        public ICategoryRepository Category=> new CategoryRepository(_context);
+        public ISkillRepository Skill => new SkillRepository(_context);
+        public ISkillSetRepository SkillSet=> new SkillSetRepository(_context);
+
         public async Task CommitAsync()
         {
             await _context.SaveChangesAsync();
-        }
-        public IEnumerable<User> GetAllUsers()
-        {
-            return _context.User.Include(r => r.Role).Include(o=>o.Operation).AsEnumerable();
         }
     }
 }

@@ -25,11 +25,16 @@ namespace Assignment.Migrations
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new OperationConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new SkillConfiguration());
         }
         public DbSet<App> App { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<Operation> Operation { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Skill> Skill { get; set; }
+        public DbSet<SkillSet> SkillSet { get; set; }
     }
 }

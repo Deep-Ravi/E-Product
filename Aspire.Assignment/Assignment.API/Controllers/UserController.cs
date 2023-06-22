@@ -21,9 +21,9 @@ using System.Threading.Tasks;
 
 namespace Assignment.Controllers
 {
-    [Authorize(Roles = "ADMIN")]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "ADMIN")]
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;

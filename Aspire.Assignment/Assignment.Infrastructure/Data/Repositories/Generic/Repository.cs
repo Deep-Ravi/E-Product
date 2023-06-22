@@ -2,7 +2,7 @@
 using Assignment.Contracts.Data.Repositories;
 using Assignment.Migrations;
 
-namespace Assignment.Core.Data.Repositories
+namespace Assignment.Infrastructure.Data.Repositories.Generic
 {
     public class Repository<T> : IRepository<T> where T : class
     {
@@ -53,6 +53,10 @@ namespace Assignment.Core.Data.Repositories
         {
             _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
+        }
+        public void UpdateRange(IEnumerable<T> entity)
+        {
+            _dbSet.UpdateRange(entity);
         }
     }
 }

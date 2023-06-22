@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 
 namespace Assignment.API.Controllers
 {
-    [Authorize(Roles ="ADMIN")]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "ADMIN")]
     public class ProductController : Controller
     {
         private readonly IMediator _mediator;

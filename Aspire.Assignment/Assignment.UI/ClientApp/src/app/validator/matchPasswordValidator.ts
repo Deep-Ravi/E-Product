@@ -14,17 +14,17 @@ export const matchPasswordValidator: ValidatorFn = (control: AbstractControl): V
   
     let upperCaseCharacters = /[A-Z]+/g
     if (upperCaseCharacters.test(control.value.password) === false) {
-      return { passwordStrength: `password has to contain Upper case characters`,invalidPassword:true };
+      return { passwordStrength: `password has to contain Upper case character`,invalidPassword:true };
     }
   
     let lowerCaseCharacters = /[a-z]+/g
     if (lowerCaseCharacters.test(control.value.password) === false) {
-      return { passwordStrength: `password has to contain lower case characters`,invalidPassword:true };
+      return { passwordStrength: `password has to contain lower case character`,invalidPassword:true };
     }
   
     let numberCharacters = /[0-9]+/g
     if (numberCharacters.test(control.value.password) === false) {
-      return { passwordStrength: `password has to contain number characters`,invalidPassword:true };
+      return { passwordStrength: `password has to contain number character`,invalidPassword:true };
     }
   
     let specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/

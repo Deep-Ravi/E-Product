@@ -34,7 +34,7 @@ namespace Assignment.Providers.Handlers.Queries
             string errorMessage = string.Empty;
             var userDetail = GetEncryptedData(request.UserName);
             string userName = userDetail.Item1;
-            var app = await Task.FromResult(_repository.GetAllUsers().FirstOrDefault(x=>x.Username==userName));
+            var app = await Task.FromResult(_repository.User.GetAllUsers().FirstOrDefault(x=>x.Username==userName));
             if (userDetail.Item2 && app != null)
                 throw new EntityNotFoundException(Constants.PassowrdLinkExpired);
 

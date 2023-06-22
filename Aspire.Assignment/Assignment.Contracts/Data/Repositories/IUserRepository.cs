@@ -2,5 +2,7 @@
 
 namespace Assignment.Contracts.Data.Repositories
 {
-    public interface IUserRepository : IRepository<User> { }
+    public interface IUserRepository : IRepository<User> {
+        IEnumerable<User> GetAllUsers();
+    }
 }

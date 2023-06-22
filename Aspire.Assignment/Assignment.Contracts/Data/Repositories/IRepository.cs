@@ -8,5 +8,6 @@
         void Update(T entity);
         void Delete(object id);
         int Count();
+        void UpdateRange(IEnumerable<T> entity);
     }
 }

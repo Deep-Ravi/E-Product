@@ -24,7 +24,7 @@ namespace Assignment.Providers.Handlers.Queries
 
         public async Task<IEnumerable<UserDTO>> Handle(GetAllUserQuery request, CancellationToken cancellationToken)
         {
-            var entities = await Task.FromResult(_repository.GetAllUsers());
+            var entities = await Task.FromResult(_repository.User.GetAllUsers());
             return _mapper.Map<IEnumerable<UserDTO>>(entities);
         }
     }

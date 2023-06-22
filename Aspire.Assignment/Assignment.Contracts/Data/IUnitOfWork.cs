@@ -10,7 +10,9 @@ namespace Assignment.Contracts.Data
         IProductRepository Product { get; }
         IRoleRepository Role { get; }
         IOperationRepository Operation { get; }
+        ISkillRepository Skill { get; }
+        ICategoryRepository Category { get; }
+        ISkillSetRepository SkillSet { get; }
         Task CommitAsync();
-        IEnumerable<User> GetAllUsers();
     }
 }

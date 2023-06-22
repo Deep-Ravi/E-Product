@@ -20,6 +20,16 @@ namespace Assignment.Migrations.Configurations
                 {
                     Id = 2,
                     Name = "GUEST"
+                },
+                new Role
+                {
+                    Id = 3,
+                    Name = "DEVELOPER"
+                },
+                new Role
+                {
+                    Id = 4,
+                    Name = "MANAGER"
                 }
             );
         }

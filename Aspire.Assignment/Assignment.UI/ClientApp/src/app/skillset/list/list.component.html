@@ -1,0 +1,108 @@
+<h1>Skills</h1>
+
+<kendo-grid [kendoGridBinding]="gridView" 
+kendoGridSelectBy="id"
+[height]="500"
+[columnMenu]="{ filter: true }"
+[groupable]="true" 
+[sortable]="true"
+[pageable]="true" 
+[pageSize]="pageSize" 
+(selectionChange)="SelectedChange($event)"
+(cancel)="cancelHandler($event)" (add)="addHandler($event)"  (save)="saveHandler($event)" (edit)="editHandler($event)" (remove)="removeHandler($event)">
+    <ng-template kendoGridToolbarTemplate>
+       <kendo-textbox
+          placeholder="Search using Category,Skill and Proficiency"
+          (valueChange)="onFilter($event)"
+          [style.width.px]="330"
+        ></kendo-textbox>
+        <kendo-grid-spacer></kendo-grid-spacer>
+        <button [disabled]="isDisable" (click)="SendApproval()">Send For Approval</button>
+        <button kendoGridAddCommand>Add New Skill</button>
+    </ng-template>
+    <kendo-grid-checkbox-column
+        [width]="45"
+        [headerClass]="{ 'text-center': true }"
+        [class]="{ 'text-center': true }"
+        [resizable]="false"
+        [columnMenu]="false"
+        [showSelectAll]="true"        
+      >
+    </kendo-grid-checkbox-column>
+    <kendo-grid-column field="approvalStatus" title="Approval" [width]="180" [editable]="false">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <strong>{{dataItem.approvalStatus}}</strong>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="category" title="Category" [width]="200">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <strong>{{dataItem.categoryName}}</strong>
+      </ng-template>
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
+        <kendo-dropdownlist [(value)]="formGroup.value.category" [data]="categories" textField="type" (valueChange)="categoryDropDownChanges($event)"
+        valueField="id"></kendo-dropdownlist>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="skill" title="Skill" [width]="180">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <strong>{{dataItem.skillName}}</strong>
+      </ng-template>
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
+        <kendo-dropdownlist [(value)]="formGroup.value.skill" [data]="skills" textField="name" (valueChange)="skillDropDownChanges($event)"
+        valueField="id"></kendo-dropdownlist>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="proficiency" title="Proficiency" [width]="150">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <strong>{{dataItem.proficiency}}</strong>
+      </ng-template>
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
+        <kendo-dropdownlist [(value)]="formGroup.value.proficiency" [data]="proficiency" (valueChange)="proficiencyDropDownChanges($event)"></kendo-dropdownlist>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="yearsOfExperience" title="Experience" [width]="140">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <strong>{{dataItem.yearsOfExperience}}</strong>
+      </ng-template>
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
+        <kendo-dropdownlist [(value)]="formGroup.value.yearsOfExperience" [data]="yearsOfExperience" (valueChange)="yearsOfExperienceDropDownChanges($event)"></kendo-dropdownlist>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="achievement" title="Achievement" [width]="330"></kendo-grid-column>
+    <kendo-grid-column field="lastWorkedDate" editor="date" title="Last Worked Date" [width]="200">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <strong>{{ dataItem.lastWorkedDate| date:'fullDate'}}</strong>
+      </ng-template>
+      <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
+        <kendo-datepicker [(value)]="formGroup.value.lastWorkedDate" [max]="currentDate">
+        </kendo-datepicker>
+      </ng-template>
+    </kendo-grid-column>
+    
+    <kendo-grid-command-column title="Commands" [width]="180" [columnMenu]="false"> 
+      <ng-template kendoGridCellTemplate let-isNew="isNew">
+        <button kendoGridEditCommand [primary]="true">Edit</button>
+        <button kendoGridRemoveCommand>Remove</button>
+        <button kendoGridSaveCommand>
+          {{ isNew ? "Add" : "Update" }}
+        </button>
+        <button kendoGridCancelCommand>
+          {{ isNew ? "Discard changes" : "Cancel" }}
+        </button>
+      </ng-template>
+      </kendo-grid-command-column>
+      <ng-template
+        kendoPagerTemplate
+        let-totalPages="totalPages"
+        let-currentPage="currentPage"
+      >
+        <kendo-pager-prev-buttons></kendo-pager-prev-buttons>
+        <kendo-pager-numeric-buttons
+          [buttonCount]="buttonCount"
+        ></kendo-pager-numeric-buttons>
+        <kendo-pager-next-buttons></kendo-pager-next-buttons>
+        <kendo-pager-input></kendo-pager-input>
+        <kendo-pager-info></kendo-pager-info>
+        <kendo-pager-page-sizes [pageSizes]="sizes"></kendo-pager-page-sizes>
+      </ng-template>
+</kendo-grid>

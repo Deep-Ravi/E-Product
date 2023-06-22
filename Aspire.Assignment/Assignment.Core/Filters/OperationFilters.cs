@@ -25,7 +25,7 @@ namespace Assignment.Core.Filters
                 var userName = context.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "userId").Value;
                 if (userName != null)
                 {
-                    var userDetail = _repository.GetAllUsers().FirstOrDefault(x => x.Username == userName);
+                    var userDetail = _repository.User.GetAllUsers().FirstOrDefault(x => x.Username == userName);
                     if (userDetail != null)
                     {
                         if (userDetail.Operation != null)
